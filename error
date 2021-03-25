@@ -1,0 +1,2 @@
+p.c: In function 'main':
+p.c:7:27: error: expected ';' before 'return'

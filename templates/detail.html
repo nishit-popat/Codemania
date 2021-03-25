@@ -1,0 +1,9 @@
+<h1>{{ problem_list }}</h1>
+{{contest_obj}}
+<ul>
+{% for problem in problem_list %}
+    <li>{{ problem.problem_name }}</li>
+    <li>{{ problem.problem_definition }}</li>
+    <li>{{ problem.marks }}</li>
+{% endfor %}
+</ul>

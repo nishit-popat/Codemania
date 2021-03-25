@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="leaderboard_css.css" rel="stylesheet">
+    <title>Contest List</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark py-3" style="background-color: #A451FF">
+        <div class="container-fluid l-auto">
+            <a class="navbar-brand my-auto" href="#" >
+                <h3> CODEMANIA </h3>
+            </a>
+
+            <ul class="navbar-nav ml-auto" style="margin-right: 30px">
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="{% url 'contest_list' %}" >
+                        Contest
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="{% url 'plg' %}">
+                        Practice
+                    </a>
+                </li>
+                <li class="nav-item fs-5">
+                    <a class="nav-link" href="{% url 'aboutus' %}">
+                        About Us
+                    </a>
+                </li>
+                <li class="nav-item fs-5">
+                    <a class="nav-link" href="{% url 'lg' %}">
+                        Sign Out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <p style="font-size: 40px; margin-left: 25px;">Participate in Contests</p>
+
+  <!--  {% for c in contest_names %}
+    <p> {{ c.contest_name }} </p>
+    {% endfor %}
+-->
+    <div class="myDiv">
+    {% for c in contest_names %}
+        <div class="row" id="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ c.contest_name }}  </h5>
+                        <p class="card-text">{{ c.contest_date }}</p>
+                        <a href="{{c.id}}/detail" class="btn btn-primary" id="btnAddControl">Participate Here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    
+    </div> 
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link href="\leaderboard_css.css" rel="stylesheet">
+
+    <title>Leaderboard</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-dark py-3" style="background-color: #A451FF; opacity:0.84">
+        <div class="container-fluid l-auto">
+            <a class="navbar-brand my-auto" href="#">
+                <h3 style="text-shadow: 1px 1px #FE1A64; margin-left: 1em"> CODEMANIA </h3>
+            </a>
+
+            <ul class="navbar-nav ml-auto" style="margin-right: 30px">
+                <!--    <li class="nav-item">
+                        <a class="nav-link fs-5" href="#">
+                            Contast
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="#">
+                            Practice
+                        </a>
+                    </li> -->
+                <li class="nav-item fs-5">
+                    <a class="nav-link" href="#">
+                        About Us
+                    </a>
+                </li>
+                <li class="nav-item fs-5">
+                    <a class="nav-link" href="#">
+                        Sign Out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <form class="addcontest-form" style="max-width: 50%;  margin: 0 auto;">
+        <h1 class="h3 fw-normal my-3" style="color: #FE1A64; text-shadow: 2px 2px #f4f4f4; font-size: 2em">Add Contest
+        </h1>
+
+
+        <label for="inputContestName" class="visually-hidden">Contest Name</label>
+        <input type="Text" id="inputContestName" class="form-control my-4" placeholder="Contest Name" required=""
+            autofocus="">
+        <label for="inputContestId" class="visually-hidden">Contest Id</label>
+        <input type="Text" id="inputContestId" class="form-control my-4" placeholder="Contest Id" required=""
+            autofocus="">
+
+        <div class="card question-card">
+            <div class="card-header">
+                Problem 1
+            </div>
+            <div class="card-body">
+                <label for="inputProblemName" class="label">Problem Name</label>
+                <input type="Text" id="inputProblemName" class="form-control my-2" placeholder="Problem Name"
+                    required="" autofocus="">
+                <label for="inputProblemId" class="label">Problem Id</label>
+                <input type="Text" id="inputProblemId" class="form-control my-2" placeholder="Problem Id" required=""
+                    autofocus="">
+                <label for="inputProblemDefinition">Problem Definition</label>
+                <textarea class="form-control my-2" id="inputProblemDefinition" rows="10" placeholder="Enter Problem Description"></textarea>
+
+
+                <label for="inputTestCaseFile">Test Case File</label><br>
+                <input type="file" class="form-control-file my-2" id="inputTestCaseFile">
+               
+            </div>
+        </div>
+        <div class="card question-card">
+            <div class="card-header">
+                Problem 2
+            </div>
+            <div class="card-body">
+                <label for="inputProblemName" class="label">Problem Name</label>
+                <input type="Text" id="inputProblemName" class="form-control my-2" placeholder="Problem Name"
+                    required="" autofocus="">
+                <label for="inputProblemId" class="label">Problem Id</label>
+                <input type="Text" id="inputProblemId" class="form-control my-2" placeholder="Problem Id" required=""
+                    autofocus="">
+                <label for="inputProblemDefinition">Problem Definition</label>
+                <textarea class="form-control my-2" id="inputProblemDefinition" rows="10" placeholder="Enter Problem Description"></textarea>
+
+
+                <label for="inputTestCaseFile">Test Case File</label><br>
+                <input type="file" class="form-control-file my-2" id="inputTestCaseFile">
+               
+            </div>
+        </div>
+        <div class="card question-card">
+            <div class="card-header">
+                Problem 3
+            </div>
+            <div class="card-body">
+                <label for="inputProblemName" class="label">Problem Name</label>
+                <input type="Text" id="inputProblemName" class="form-control my-2" placeholder="Problem Name"
+                    required="" autofocus="">
+                <label for="inputProblemId" class="label">Problem Id</label>
+                <input type="Text" id="inputProblemId" class="form-control my-2" placeholder="Problem Id" required=""
+                    autofocus="">
+                <label for="inputProblemDefinition">Problem Definition</label>
+                <textarea class="form-control my-2" id="inputProblemDefinition" rows="10" placeholder="Enter Problem Description"></textarea>
+
+
+                <label for="inputTestCaseFile">Test Case File</label><br>
+                <input type="file" class="form-control-file my-2" id="inputTestCaseFile">
+               
+            </div>
+        </div>
+
+
+
+
+        <button class="w-100 btn btn-lg signin-button mb-3 mt-4" type="submit">Add Contest</button>
+    </form>
+
+
+</body>
+
+</html>
