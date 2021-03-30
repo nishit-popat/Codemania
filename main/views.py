@@ -11,26 +11,41 @@ from .models import Contest, Problem
 def admin(request):
 	return render(request,'admin')
 
-
-
 def home(request):
-    return render(request, 'home.html')
+
+    if request.method == 'POST':
+        if request.POST.get("signin"):
+            return render(request, 'signin.html')
+        elif request.POST.get("signup"):
+            return render(request, 'signup.html')
+    else:
+        return render(request, 'home.html')
+
+
+def user_home(request):
+
+    return render(request, 'user_home.html')
+
 
 def login(request):
-	if request.method == 'POST':
-		username = request.POST.get('username')
-		password = request.POST.get('password')
-		user = auth.authenticate(username=username, password=password)
-	
-		if user is not None:
-			messages.success("Successfully Logged In")
-			auth.login(request, user)
-			return render(request, 'home.html')
-		else:
-			#messages.error(request, 'Invalid Credentials')
-			return render(request, 'home.html')
-	else:
-		return render(request, 'signin.html')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('user_home')
+        else:
+            messages.error(request, 'Invalid Credentials')
+            return render(request, 'signin.html')
+    else:
+        return render(request, 'signin.html')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
 
 
 def register(request):
@@ -57,11 +72,10 @@ def register(request):
             else:
                 user = User.objects.create_user(
                     username=username, first_name=first_name, last_name=last_name, email=email, password=password1)
-                user.save() 
+                user.save()
                 messages.success(
                     request, 'You are registered successfully, Please sign to continue.')
-				
-                return redirect('/')
+                return redirect('login')
 
         else:
             messages.error(
@@ -70,6 +84,8 @@ def register(request):
 
     else:
         return render(request, 'signup.html')
+
+		
 
 def plg(request):
 	context={}

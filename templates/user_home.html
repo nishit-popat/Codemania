@@ -12,6 +12,9 @@
       background-size: cover;
     }
 
+    /* body{
+        color: #FFFFFF;
+      }*/
     .card {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       transition: 0.3s;
@@ -54,6 +57,24 @@
 </head>
 
 <body>
+  <!--   <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card">
+      <img src="CONTEST.jpg" class="card-img-top"  alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="playground.jpg" class="card-img-top"  alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+      </div>
+    </div>
+  </div>
+</div> -->
   <nav class="navbar navbar-expand-lg navbar-dark py-3" style="background-color: #A451FF">
     <div class="container-fluid l-auto">
       <a class="navbar-brand my-auto" href="#">
@@ -62,15 +83,27 @@
 
       <ul class="navbar-nav ml-auto" style="margin-right: 30px">
         <li class="nav-item">
-          <a class="nav-link fs-5" href="login">
-            Sign In
+          <a class="nav-link fs-5" href="#">
+            Contest
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-5" href="register">
-            Sign Up
+          <a class="nav-link fs-5" href="#">
+            Practice
           </a>
         </li>
+        <li class="nav-item fs-5">
+          <a class="nav-link" href="#">
+            About Us
+          </a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item fs-5">
+          <a class="nav-link" href="logout">
+            Sign Out
+          </a>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </nav>
@@ -82,8 +115,11 @@
     <div class="card" style="height: 450px; width: 450px">
       <img src="{% static 'images/CONTEST.jpg' %}" alt="Avatar" style="width:100%">
       <div class="container">
+        <!--   <h4><b></b></h4> 
+    <p></p>  -->
       </div>
     </div>
+    <button class="button button1" style="margin-left: 140px">CONTEST</button>
   </div>
 
 
@@ -91,8 +127,11 @@
     <div class="card" style="height: 450px; width: 450px">
       <img src="{% static 'images/playground.jpg' %}" alt="Avatar" style="width:100%">
       <div class="container">
+        <!--   <h4><b></b></h4> 
+    <p></p>  -->
       </div>
     </div>
+    <button class="button button1" style="margin-left: 150px">PRACTICE</button>
   </div>
 
 </body>
