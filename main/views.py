@@ -11,6 +11,7 @@ from .models import Contest, Problem
 def admin(request):
 	return render(request,'admin')
 
+
 def home(request):
 
     if request.method == 'POST':
@@ -49,43 +50,39 @@ def logout(request):
 
 
 def register(request):
+	return render(request, 'signup.html')
 
-    if request.method == 'POST':
+def postregister(request):
 
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-        username = request.POST.get('username')
-        password1 = request.POST.get('password1')
-        password2 = request.POST.get('password2')
-
-        if password1 == password2:
-
-            if User.objects.filter(username=username).exists():
-                messages.error(request, 'Username is Taken Please Try Again')
-                return redirect('register')
-
-            elif User.objects.filter(email=email).exists():
-                messages.error(request, 'Email is Taken Please Try Again')
-                return redirect('register')
-
-            else:
-                user = User.objects.create_user(
-                    username=username, first_name=first_name, last_name=last_name, email=email, password=password1)
-                user.save()
-                messages.success(
-                    request, 'You are registered successfully, Please sign to continue.')
-                return redirect('login')
-
-        else:
-            messages.error(
-                request, 'Password is not matching Please Try Again')
-            return redirect('register')
-
-    else:
-        return render(request, 'signup.html')
-
+	if request.POST:
+		first_name = request.POST.get('first_name')
+		last_name = request.POST.get('last_name')
+		email = request.POST.get('email')
+		username = request.POST.get('username')
+		password1 = request.POST.get('password1')
+		password2 = request.POST.get('password2')
 		
+		if password1 == password2:
+			if User.objects.filter(username=username).exists():
+				messages.error(request, 'Username is Taken Please Try Again')
+				return render(request,'signup.html')
+			elif User.objects.filter(email=email).exists():
+				messages.error(request, 'Email is Taken Please Try Again')
+				return render(request,'signup.html')
+			else:
+				user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password1)
+				user.save()
+				print('You are registered successfully, Please sign to continue.')
+				return redirect('login')
+				
+		else:
+			messages.error(request, 'Password is not matching Please Try Again')
+			return render(request,'signup.html')
+	else:
+		print("hello")
+		return redirect('register')
+
+
 
 def plg(request):
 	context={}

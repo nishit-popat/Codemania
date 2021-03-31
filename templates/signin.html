@@ -1,5 +1,4 @@
 {% load static %}
-
 <!doctype html>
 <html lang="en">
 
@@ -45,13 +44,6 @@
             <a class="navbar-brand my-auto" href="#">
                 <h3 style="text-shadow: 1px 1px #FE1A64; margin-left: 1em"> CODEMANIA </h3>
             </a>
-            <ul class="navbar-nav ml-auto" style="margin-right: 30px">
-                <li class="nav-item">
-                    <a class="nav-link fs-5" href="{% url 'admin' %}">
-                        Admin
-                    </a>
-                </li>
-            </ul>
         </div>
     </nav>
 
@@ -66,14 +58,14 @@
         <img src="{% static 'images/left-image.png' %}">
     </div>
 
-    <form class="signin-form" name="myForm" action="login" onsubmit="return validateForm()" method="post">
+    <form class="signin-form" name="myForm" action="/login/" onsubmit="return validateForm()" method="post">
         {% csrf_token %}
         <h1 class="h3 fw-normal my-3"
             style="color: #FE1A64; text-shadow: 2px 2px #f4f4f4; font-size: 2.4em ; margin-top: 2em; ">Sign in Here</h1>
         <label for="inputEmail" class="visually-hidden">Email address</label>
         <input type="text" name="username" id="inputEmail" class="form-control my-4" placeholder="Username">
         <label for="inputPassword" name="password" class="visually-hidden">Password</label>
-        <input type="password" id="inputPassword" class="form-control mt-4 mb-4" placeholder="Password">
+        <input type="password" name='password' id="inputPassword" class="form-control mt-4 mb-4" placeholder="Password">
 
         <button class="w-100 btn btn-lg signin-button mb-3" type="submit">Sign in</button>
 

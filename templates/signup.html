@@ -40,7 +40,7 @@
     </div>
     {% endfor %}
 
-    <form class="signup-form" action="register" method="POST">
+    <form class="signup-form" action="/postregister/" method="POST">
 
         {% csrf_token %}
         <h1 class="h3 fw-normal my-3" style="color: #FE1A64; text-shadow: 2px 2px #f4f4f4; font-size: 2em">Register
@@ -79,8 +79,6 @@
             placeholder="Confirm Password" required="">
         <button class="w-100 btn btn-lg signin-button mb-3" type="submit">Sign in</button>
     </form>
-
-
 
 
 </body>
