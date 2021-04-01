@@ -5,7 +5,8 @@ from django.contrib.auth.models import User, auth
 import os
 from django.shortcuts import get_object_or_404
 
-from .models import Contest, Problem
+from .models import Contest, Problem, Profile
+
 
 
 def admin(request):
@@ -79,7 +80,6 @@ def postregister(request):
 			messages.error(request, 'Password is not matching Please Try Again')
 			return render(request,'signup.html')
 	else:
-		print("hello")
 		return redirect('register')
 
 
@@ -164,8 +164,28 @@ def detail(request, contest_id):
 		contest_obj=Contest.objects.get(pk=contest_id)
         #contest = Contest.objects.get(pk=contest_id)
 	except Contest.DoesNotExist:
-		raise Http404("Contest does not exist")
+		raise Http404("Problems does not exist")
 	return render(request, 'contestpage.html', {'problem_list': problem_list,'contest_obj':contest_obj})
 
 def aboutus(request):
 	return render(request,'about_us.html')
+
+def problem_playground(request, contest_id, problem_id):
+	try:
+		#profile = Profile.objects.create(user=request.user)
+		#profile, created = Profile.objects.get_or_create(user=request.user)
+		username = request.user.username
+		userid = request.user.id
+		pr1_points = request.user.profile.pr1_points
+		print(userid)
+		print(username)
+		print(pr1_points)
+		contest_obj = Contest.objects.get(pk=contest_id)
+		problem_obj = Problem.objects.get(pk=problem_id)
+		context = {'problem_obj': problem_obj,
+		 		  'contest_obj': contest_obj,
+				  }
+	except Problem.DoesNotExist:
+		raise Http404("Problem does not exist")
+
+	return render(request, 'contest_playground.html', context)

@@ -72,7 +72,7 @@
             <div class="container question-details">
                 
                 <p> {{  problem.problem_definition | safe | linebreaks }} </p>
-                <button type="button" class="btn btn-primary btn-block"><a href="{% url 'plg' %}" style="color: white;">Try This</a></button>
+                <button type="button" class="btn btn-primary btn-block"><a href="{{problem.id}}/problem_playground" style="color: white;">Try This</a></button>
             </div>
         </div>
         {% endfor %}

@@ -12,6 +12,7 @@ urlpatterns = [
     path('contest_list/', views.contest_list, name='contest_list'),
     path('user_home', views.user_home, name='user_home'),
     path('contest_list/<int:contest_id>/detail',views.detail, name='detail'),
+    path('contest_list/<int:contest_id>/<int:problem_id>/problem_playground', views.problem_playground, name='problem_playground'),
     path('aboutus/',views.aboutus,name='aboutus'),
     path('lg/',views.login,name='lg'),
 ]
