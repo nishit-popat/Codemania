@@ -7,7 +7,7 @@
     <div class="container">
         <h4>{{user.username}}</h4>
         <h2>{{problem_obj.problem_name}}</h2><br>
-        <p>{{problem_obj.problem_definition}}</p><br>
+        <p>{{problem_obj.problem_definition | safe | linebreaks}} </p><br>
     </div>
     <h3 style="text-shadow: 2px 2px #f0f0f0; color: #fe1a64; margin-top: 1em"> TRY SOLUTION HERE </h3>
     <form action="" method="POST">

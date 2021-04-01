@@ -32,7 +32,7 @@ class Profile(models.Model):
 def create_profile(sender, instance, created, **kwargs):
     user = instance
     if created:
-        profile = Profile(user=user)
+        profile = Profile(user_ref=user)
         profile.save() 
 
 post_save.connect(create_profile, sender=User)

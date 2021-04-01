@@ -179,7 +179,7 @@ def problem_playground(request, contest_id, problem_id):
 		pr1_points = request.user.profile.pr1_points
 		print(userid)
 		print(username)
-		print(pr1_points)
+		print("Problem 1 points ",pr1_points)
 		contest_obj = Contest.objects.get(pk=contest_id)
 		problem_obj = Problem.objects.get(pk=problem_id)
 		context = {'problem_obj': problem_obj,
