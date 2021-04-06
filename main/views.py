@@ -172,20 +172,97 @@ def aboutus(request):
 
 def problem_playground(request, contest_id, problem_id):
 	try:
-		#profile = Profile.objects.create(user=request.user)
-		#profile, created = Profile.objects.get_or_create(user=request.user)
+		glb=""
 		username = request.user.username
 		userid = request.user.id
 		pr1_points = request.user.profile.pr1_points
 		print(userid)
 		print(username)
-		print("Problem 1 points ",pr1_points)
+		print("Problem 1 points ", pr1_points)
 		contest_obj = Contest.objects.get(pk=contest_id)
 		problem_obj = Problem.objects.get(pk=problem_id)
+
 		context = {'problem_obj': problem_obj,
-		 		  'contest_obj': contest_obj,
-				  }
+					'contest_obj': contest_obj,
+					}		
+		str = ""
+		if request.method == "POST":
+					op = open('testfile/problem1.txt', 'r').read()
+					code = request.POST.get('code', '')
+					context['code']=code
+					typo = request.POST.get('typo', '')
+					context['typo']=typo
+					print(typo)
+					print(op)
+					if (typo=='C'):
+						with open("p.c","w") as t:
+						# with open("p.c","w") as t:
+							t.write(code)
+						b=os.system("gcc p.c 2> error")# | a.exe")# >aout.txt")
+						if(b==0):
+							os.system("a >aout.txt")
+							with open("aout.txt","r+") as t:
+								str=t.read()
+								count = str
+								if op == str:
+									print("Success")
+									messages.success(request, 'Congratulations you got 100 pts')
+								else:
+									messages.error(request, 'Wrong Answer Please try Again')
+								print(count)
+								context['output']=count
+							return render(request,'contest_playground.html',context)
+						else:
+							with open("error","r") as t:
+								count=t.read()
+								print(count)
+								context['output'] = count
+							messages.error(request, 'Syntax Error please check and submit')
+							return render(request,'contest_playground.html',context)
+
+					elif(typo=='C++'):
+						with open("q.cpp","w") as t:
+						# with open("p.c","w") as t:
+							t.write(code)
+						b=os.system("g++ q.cpp 2> error")# | a.exe")# >aout.txt")
+						if(b==0):
+							os.system("a >aout.txt")
+							with open("aout.txt","r+") as t:
+								str = t.read()
+								if op == str:
+									print("Success")
+									messages.success(request, 'Congratulations you got 100 pts')
+								else:
+									messages.error(request, 'Wrong Answer Please try Again')
+								count = str
+								context['output']=count
+							return render(request,'contest_playground.html',context)
+						else:
+							with open("error","r") as t:
+								count=t.read()
+								print(count)
+								context['output'] = count
+							messages.error(request, 'Syntax Error please check and submit')
+							return render(request,'contest_playground.html',context)
+
+					elif(typo=='Java'):
+						with open("CODEMANIA.java","w") as t:
+							t.write(code)
+						
+						os.system("javac CODEMANIA.java")
+						os.system("java CODEMANIA > aout.txt")
+						with open("aout.txt","r") as t:
+							count = t.read()
+							#count=str
+							print(count)
+							context['output']=count
+						return render(request, 'contest_playground.html', context)  # | a.exe")# >aout.txt")
+						
+					return render(request,'contest_playground.html',context)
+									
+		else:
+			return render(request, 'contest_playground.html', context)
+
+
 	except Problem.DoesNotExist:
 		raise Http404("Problem does not exist")
-
-	return render(request, 'contest_playground.html', context)
