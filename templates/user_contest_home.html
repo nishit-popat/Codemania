@@ -6,10 +6,11 @@
     <div class="row" id="row">
         <div class="col-sm-6">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body m-2 p-2">
                     <h5 class="card-title">{{ c.contest_name }} </h5>
                     <p class="card-text">{{ c.contest_date }}</p>
                     <a href="{{c.id}}/detail" class="btn btn-primary" id="btnAddControl">Participate Here</a>
+                    <a href="leaderboard/{{c.id}}" class="btn btn-success" id="btnAddControl" style="margin-left:428px">See Leaderboard</a>
                 </div>
             </div>
         </div>

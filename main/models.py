@@ -37,8 +37,17 @@ def create_profile(sender, instance, created, **kwargs):
 
 post_save.connect(create_profile, sender=User)
 
-'''
-@receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
-    instance.profile.save()
-    '''
+
+class ProblemSolved(models.Model):
+    user_ref = models.ForeignKey(User, on_delete=models.CASCADE)
+    contest_ref = models.ForeignKey(Contest, on_delete=models.CASCADE)
+    problem_ref = models.ForeignKey(Problem, on_delete=models.CASCADE)
+    points_get = models.IntegerField(default=0)
+    time_submitted = models.DateTimeField('date published')
+    
+    class Meta:
+        unique_together = (("user_ref", "problem_ref"))
+        
+
+    def __str__(self):
+        return self.user_ref.username + " solved " + self.problem_ref.problem_name + " and got " + str(self.points_get) + " marks " 

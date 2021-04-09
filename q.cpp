@@ -1,10 +1,6 @@
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
-
 int main(){
-
-int ans=0;
-for(int i=1;i<=10;i++) ans+=i;
-
-cout<<ans;
+cout << 102+200;
+return 0;
 }

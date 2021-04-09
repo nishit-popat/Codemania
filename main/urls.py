@@ -15,4 +15,7 @@ urlpatterns = [
     path('contest_list/<int:contest_id>/<int:problem_id>/problem_playground', views.problem_playground, name='problem_playground'),
     path('aboutus/',views.aboutus,name='aboutus'),
     path('lg/',views.login,name='lg'),
+    path('leaderboard/<int:contest_id>',views.pointtable, name='leaderboard'),
+    path('contest_list/leaderboard/<int:contest_id>',views.pointtable, name='leaderboard'),
+    
 ]

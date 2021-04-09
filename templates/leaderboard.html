@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -10,12 +11,46 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <link href="\leaderboard_css.css" rel="stylesheet">
-
     <title>Leaderboard</title>
+
+    <style>
+        body {
+            opacity: 0.84;
+            font-family: popins
+          }
+          
+          .tb-bg-color{
+              margin-top: .3rem;
+              margin-bottom: .3rem;
+              padding-top: .3rem;
+              
+          }
+        
+          .col-border{
+              background-color: white;
+              border: .7px solid black;
+          }
+        
+          #first-row{
+              background-color: #FE8C01;
+              color: white;
+          }
+        
+          .leader-board-container{
+              margin-top: 1.5rem;
+          }
+        
+          .dropdown-toggle{
+              background-color: #FE8C01;
+              color: white;
+          }
+        
+    </style>
+
+
 </head>
 
-<body>
+<body style="background: url(/static/images/bg1.jpg); background-size:cover">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
@@ -28,43 +63,30 @@
 
             <ul class="navbar-nav ml-auto" style="margin-right: 30px">
                 <li class="nav-item">
-                    <a class="nav-link fs-5" href="#" >
-                        Contast
+                    <a class="nav-link fs-5" href="{% url 'contest_list' %}" >
+                        Contest
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-5" href="#">
+                    <a class="nav-link fs-5" href="{% url 'plg' %}">
                         Practice
                     </a>
                 </li>
                 <li class="nav-item fs-5">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url 'aboutus' %}">
                         About Us
                     </a>
                 </li>
                 <li class="nav-item fs-5">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url 'lg' %}">
                         Sign Out
                     </a>
                 </li>
             </ul>
         </div>
     </nav>
-
     <div class="container my-5">
         <h1>Leaderboard</h1>
-
-        <div class="dropdown">
-            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              Select Contest
-            </a>
-          
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Contest 1</a></li>
-              <li><a class="dropdown-item" href="#">Contest 2</a></li>
-              <li><a class="dropdown-item" href="#">Contest 3</a></li>
-            </ul>
-          </div>
 
           <div class="container leader-board-container">
 
@@ -75,36 +97,18 @@
                 <div class="col-2 themed-grid-col col-border fs-5" id="first-row">Points</div>
             </div>
         </div>
-        <div class="container-sm w-75  tb-bg-color">
-            <div class="row mb-3 ">
-                <div class="col-1 themed-grid-col col-border">1</div>
-                <div class="col-6 themed-grid-col col-border">nishit_popat</div>
-                <div class="col-2 themed-grid-col col-border">500</div>
-            </div>
-        </div>
-        <div class="container-sm w-75  tb-bg-color">
-            <div class="row mb-3 ">
-                <div class="col-1 themed-grid-col col-border">1</div>
-                <div class="col-6 themed-grid-col col-border">manil_patel</div>
-                <div class="col-2 themed-grid-col col-border">500</div>
-            </div>
-        </div>
-        <div class="container-sm w-75  tb-bg-color">
-            <div class="row mb-3 ">
-                <div class="col-1 themed-grid-col col-border">1</div>
-                <div class="col-6 themed-grid-col col-border">meet_patel</div>
-                <div class="col-2 themed-grid-col col-border">500</div>
-            </div>
-        </div>
-        <div class="container-sm w-75 tb-bg-color">
-            <div class="row mb-3 ">
-                <div class="col-1 themed-grid-col col-border">1</div>
-                <div class="col-6 themed-grid-col col-border">jay_patel</div>
-                <div class="col-2 themed-grid-col col-border">500</div>
-            </div>
-        </div>
-    </div>
-
+        
+            {% for contest_user in contest_users %}
+                <div class="container-sm w-75  tb-bg-color">
+                    <div class="row mb-3 ">
+                        <div class="col-1 themed-grid-col col-border">{{forloop.counter}}</div>
+                        <div class="col-6 themed-grid-col col-border">{{contest_user.username}}</div>
+                        <div class="col-2 themed-grid-col col-border">{{contest_user.point_sum}}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        
+       
     </div>
 </body>
 

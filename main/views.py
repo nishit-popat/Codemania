@@ -4,8 +4,10 @@ from django.contrib import messages
 from django.contrib.auth.models import User, auth
 import os
 from django.shortcuts import get_object_or_404
+from django.db.models import Sum
+import datetime
 
-from .models import Contest, Problem, Profile
+from .models import Contest, Problem, Profile, ProblemSolved
 
 
 
@@ -25,7 +27,6 @@ def home(request):
 
 
 def user_home(request):
-
     return render(request, 'user_home.html')
 
 
@@ -173,38 +174,40 @@ def aboutus(request):
 def problem_playground(request, contest_id, problem_id):
 	try:
 		glb=""
-		username = request.user.username
-		userid = request.user.id
-		pr1_points = request.user.profile.pr1_points
-		print(userid)
-		print(username)
-		print("Problem 1 points ", pr1_points)
-		contest_obj = Contest.objects.get(pk=contest_id)
 		problem_obj = Problem.objects.get(pk=problem_id)
+		contest_obj = Contest.objects.get(pk=contest_id)
+		problem_file_url = problem_obj.testfile.url[1:]
+		print("Problem File Url : ",problem_file_url)
+  
 
 		context = {'problem_obj': problem_obj,
 					'contest_obj': contest_obj,
-					}		
+				}		
 		str = ""
 		if request.method == "POST":
-					op = open('testfile/problem1.txt', 'r').read()
+					op = open(problem_file_url, 'r').read()
 					code = request.POST.get('code', '')
 					context['code']=code
 					typo = request.POST.get('typo', '')
 					context['typo']=typo
-					print(typo)
-					print(op)
+					#print(typo)
+					#print(op)
 					if (typo=='C'):
 						with open("p.c","w") as t:
-						# with open("p.c","w") as t:
 							t.write(code)
-						b=os.system("gcc p.c 2> error")# | a.exe")# >aout.txt")
+						b=os.system("gcc p.c 2> error")
 						if(b==0):
 							os.system("a >aout.txt")
 							with open("aout.txt","r+") as t:
 								str=t.read()
 								count = str
 								if op == str:
+									current_user = request.user
+									marks = problem_obj.marks
+									problem_solved_instance = ProblemSolved.objects.create(
+										contest_ref=contest_obj, problem_ref=problem_obj, user_ref=current_user, points_get=marks)
+									problem_solved_instance.save()
+									priint(problem_solved_instance)
 									print("Success")
 									messages.success(request, 'Congratulations you got 100 pts')
 								else:
@@ -222,14 +225,23 @@ def problem_playground(request, contest_id, problem_id):
 
 					elif(typo=='C++'):
 						with open("q.cpp","w") as t:
-						# with open("p.c","w") as t:
 							t.write(code)
-						b=os.system("g++ q.cpp 2> error")# | a.exe")# >aout.txt")
+						b=os.system("g++ q.cpp 2> error")
 						if(b==0):
 							os.system("a >aout.txt")
 							with open("aout.txt","r+") as t:
 								str = t.read()
 								if op == str:
+									contest_obj = Contest.objects.get(pk=contest_id)
+									problem_obj = Problem.objects.get(pk=problem_id)
+									current_user = request.user
+									marks = problem_obj.marks
+
+									problem_solved_instance, created = ProblemSolved.objects.get_or_create(
+										contest_ref=contest_obj, problem_ref=problem_obj, user_ref=current_user,
+          								points_get=marks, time_submitted=datetime.datetime.now())
+									problem_solved_instance.save()
+									print(problem_solved_instance)
 									print("Success")
 									messages.success(request, 'Congratulations you got 100 pts')
 								else:
@@ -253,10 +265,9 @@ def problem_playground(request, contest_id, problem_id):
 						os.system("java CODEMANIA > aout.txt")
 						with open("aout.txt","r") as t:
 							count = t.read()
-							#count=str
 							print(count)
 							context['output']=count
-						return render(request, 'contest_playground.html', context)  # | a.exe")# >aout.txt")
+						return render(request, 'contest_playground.html', context)  
 						
 					return render(request,'contest_playground.html',context)
 									
@@ -266,3 +277,15 @@ def problem_playground(request, contest_id, problem_id):
 
 	except Problem.DoesNotExist:
 		raise Http404("Problem does not exist")
+
+def pointtable(request, contest_id):
+    context = {}
+    contest_obj=Contest.objects.get(pk=contest_id)
+    contest_users = User.objects.filter(
+        problemsolved__contest_ref = contest_obj
+    ).annotate(
+        point_sum=Sum('problemsolved__points_get')
+    ).order_by('-point_sum')
+    context['contest_users'] = contest_users
+    print(contest_users)
+    return render(request,'leaderboard.html', context)    
