@@ -1,11 +1,4 @@
-/*body {
-    background:url(bg1.jpg);
-    background-size:cover;
-    opacity: 0.84;
-    font-family: TimesNewRoman
-  }*/
-  
-  .tb-bg-color{
+    .tb-bg-color{
       margin-top: .3rem;
       margin-bottom: .3rem;
       padding-top: .3rem;
@@ -31,46 +24,20 @@
       color: white;
   }
 
-  .signin-form{
-    /* background-color: white;
-    opacity: 1;
-    display: block;
-    width: 100%;
-    height: auto;
-    max-width: 370px;
-    padding: 15px;
-    margin: 10em auto; */
-    width: 375px;
-    height: 380px;
-    opacity: 1;
-    display: block;
-    background: #fff;
-    color: rgb(164, 81, 250,.84);
-    top: 60%;
-    left: 78%;
-    position: absolute;
-    transform: translate(-90%,-60%);
-    padding-top: 20px;
-    padding-right: 30px;
-    padding-left: 30px;
-    margin-left: 70px;
-    box-shadow: 5px 5px grey;
-  }
-
   .signin-button{
       background-color: #31FB83;
       color: #FFF;
   }
 
   .signup-form{
-    background-color: white;
+    background-color:transparent;
     opacity: 10;
     display: block;
     width: 100%;
     height: auto;
     max-width: 440px;
     padding: 15px;
-    margin-left: 37%;
+    margin-left: 70%;
     margin-top:2.5em;
     
   }

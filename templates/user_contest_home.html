@@ -1,21 +1,37 @@
-{% extends 'base.html' %}
-{% block content %}
-<p style="font-size: 40px; margin-left: 25px;">Participate in Contests</p>
-<div class="myDiv">
+{% extends 'base.html' %} {% block content %}
+<body style="background: url(/static/images/bg16.png)">
+  <h1 style="font-size: 44px; margin-left: 25px; color: #0b0710">Participate in Contests</h1>
+  <div class="myDiv">
     {% for c in contest_names %}
     <div class="row" id="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body m-2 p-2">
-                    <h5 class="card-title">{{ c.contest_name }} </h5>
-                    <p class="card-text">{{ c.contest_date }}</p>
-                    <a href="{{c.id}}/detail" class="btn btn-primary" id="btnAddControl">Participate Here</a>
-                    <a href="leaderboard/{{c.id}}" class="btn btn-success" id="btnAddControl" style="margin-left:428px">See Leaderboard</a>
-                </div>
-            </div>
+      <div class="col-sm-6">
+        <div
+          class="card shadow bg-white rounded"
+          style="
+            background-color: #485461;
+            background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+            margin-left: 70%;
+            width: 500px;
+          "
+        >
+          <div class="card-body" style="color: white">
+            <h5 class="card-title">{{ c.contest_name }}</h5>
+            <p class="card-text">{{ c.contest_date }}</p>
+            <a href="{{c.id}}/detail" class="btn btn-primary" id="btnAddControl"
+              >Participate Here</a
+            >
+            <a
+              href="leaderboard/{{c.id}}"
+              class="btn btn-success"
+              id="btnAddControl"
+              style="margin-left: 170px"
+              >See Leaderboard</a
+            >
+          </div>
         </div>
+      </div>
     </div>
     {% endfor %}
-
-</div>
-{% endblock %}
+  </div>
+  {% endblock %}
+</body>

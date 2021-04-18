@@ -18,6 +18,7 @@ class Problem(models.Model):
     problem_definition = models.TextField(max_length=700)
     marks = models.IntegerField(default=0)
     testfile = models.FileField(upload_to='testfile/')
+    inputfile = models.FileField(upload_to='inputfile/')
 
     def __str__(self):
         return self.problem_name
