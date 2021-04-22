@@ -1,6 +1,69 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <title>Contest</title>
+    {{ form.media }}
+
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #0b0710; opacity: 0.96"
+    >
+      <div class="container-fluid l-auto">
+        <a class="navbar-brand my-auto" href="#">
+          <div class="row">
+            <div class="col-sm">
+              <img
+                src="{% static 'images/codemania_logo.png' %}"
+                alt="logo"
+                style="height: 50px; width: 60px"
+              /> 
+            </div>
+            <div class="col-sm">
+              <h2
+                style="
+                  text-shadow: 1px 1px #fe1a64;
+                  text-align: center;
+                  padding-top: 4px;
+                  color: #66fcf1;
+                "
+              >
+                CODEMANIA
+              </h2>
+            </div>
+          </div>
+        </a>
+        <ul class="navbar-nav ml-auto" style="margin-right: 30px; color:white">
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="{% url 'contest_list' %}">
+              Contest
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="{% url 'plg' %}"> Practice </a>
+          </li>
+          <li class="nav-item fs-5">
+            <a class="nav-link" href="{% url 'aboutus' %}"> About Us </a>
+          </li>
+          <li class="nav-item fs-5">
+            <a class="nav-link" href="{% url 'lg' %}"> Sign Out </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
 
 <div class="container">
     <br>
@@ -17,32 +80,18 @@
         <p>{{problem_obj.problem_definition | safe | linebreaks}} </p>
     </div>
     <h3 style="text-shadow: 2px 2px #f0f0f0; color: #fe1a64; margin-top: 1em"> TRY SOLUTION HERE </h3>
-    <form action="" method="POST">
+        <form action="" method="post">
         {% csrf_token %}
+        {{ form.as_p }}
         <div class="form-group">
+          <h5>Output</h5>
+          <textarea class="form-control" rows="4">
+        {{output | safe  }}
+        </textarea>
+        <input type="submit" class="btn btn-success" style="margin-top:10px; margin-left: 73.5em; margin-bottom: 30px; width: 120px"
+            value="Run"        
+        />
 
-            <textarea class="form-control" id="exampleFormControlPractice" rows="13" name="code">{{code}}</textarea>
-        </div>
-        <div class="form-group">
-            <h5> Output </h5>
-            <textarea class="form-control" id="exampleFormControlInputArguments" rows="4">{{output}}</textarea>
-        </div>
-        <div class="form-group row mb-4 pb-1">
-            <div class="form-group col-md-2">
-                <select class="form-control" id="exampleFormControlSelect1" name="typo" style="margin-top: 10px;">
-                    <option value="{{typo}}" selected>{{typo}}</option>
-                    <option value="C">C</option>
-                    <option value="C++">C++</option>
-                    <option value="Java">Java</option>
-                </select>
-            </div>
-            <button type="Submit" name="compile" value="compile" method="POST" class="btn btn-success" style="margin-left: 63em; float: left; width:fit-content;
-          margin-top: 10px;">
-                <h6>Submit</h6>
-            </button>
-        </div>
-</div>
-</form>
 </div>
 
-{% endblock %}
+</body>

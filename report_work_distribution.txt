@@ -1,0 +1,28 @@
+There are total 9 chapters: 
+Below is distribution : 
+1. Introduction     - Meet Patel(18CE081)
+
+2. Project Management -Nishit Popat(18CE091)
+
+3. Feasibility Study - Jay Patel(18CE076)
+
+4. System Analysis & Requirement - Manil Patel(18CE078)
+
+5. System Design 
+Topics to be covered : 
+	1) DFD Diagram - Meet Patel(18CE081)
+	2) Use Case Diagram - Jay Patel(18CE076)
+	3) ER Diagram - Nishit Popat(18CE091)
+	4) Class Diagram - Manil Patel(18CE078)
+
+6. Screenshots - Meet Patel(18CE081)
+
+7. Testing - Jay Patel(18CE076)
+
+8. Conclusion - Nishit Popat(18CE091)
+
+9. Limitation & Future Enhancement - Manil Patel(18CE076)
+
+10. References - Nishit Popat(18CE091)
+
+Final Formatting - Nishit POpat(18CE091)
