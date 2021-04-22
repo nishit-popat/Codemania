@@ -258,14 +258,17 @@ def problem_playground(request, contest_id, problem_id):
 							current_user = request.user
 							marks = problem_obj.marks
 
-							problem_solved_instance, created = ProblemSolved.objects.get_or_create(
+							problem_solved_instance, isExisted = ProblemSolved.objects.get_or_create(
 								contest_ref=contest_obj, problem_ref=problem_obj, user_ref=current_user,
-          						points_get=marks, time_submitted=datetime.datetime.now())
+          						points_get=marks, defaults={'time_submitted': datetime.datetime.now()})
+
 							problem_solved_instance.save()
+
 							print(problem_solved_instance)
 							context['output']=str1
+							print("Already exists : ", isExisted)
 							print("Success")
-							messages.success(request, 'Congratulations you got 100 pts')
+							messages.success(request, 'Congratulations you got Right Answer')
 						else:
 							messages.error(request, 'Wrong Answer Please try Again')
 							count = str1

@@ -42,7 +42,7 @@ class ProblemSolved(models.Model):
     #Here Meta class identifies unique key in table which is combintion of user_ref and problem_ref which means one user can solve
     #one problem only once. If user submits it second time it will just override the row and it will not create extra row.
     class Meta:
-        unique_together = (("user_ref", "problem_ref"))
+        unique_together = ("user_ref", "problem_ref")
         
 
     def __str__(self):
