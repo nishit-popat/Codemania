@@ -75,19 +75,21 @@
     </div>
     {% endfor %}
 
-    <div class="container">
-        <h2>{{problem_obj.problem_name}}</h2>
+    <div class="card">
+      <div class="card-body p-4" style=" box-sizing: border-box;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.07); background: #c5c6c7; opacity:0.9 ">
+       <h2>{{problem_obj.problem_name}}</h2>
         <p>{{problem_obj.problem_definition | safe | linebreaks}} </p>
+    
+      </div>
     </div>
     <h3 style="text-shadow: 2px 2px #f0f0f0; color: #fe1a64; margin-top: 1em"> TRY SOLUTION HERE </h3>
         <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="form-group">
-          <h5>Output</h5>
-          <textarea class="form-control" rows="4">
-        {{output | safe  }}
-        </textarea>
+          <h3>Output</h3>
+          <textarea class="form-control" rows="4">{{output}}</textarea>
         <input type="submit" class="btn btn-success" style="margin-top:10px; margin-left: 73.5em; margin-bottom: 30px; width: 120px"
             value="Run"        
         />

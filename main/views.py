@@ -150,13 +150,18 @@ def plg(request):
 		form = SnippetForm(request.POST)
 		print(form.data.get("text"))
 		code = form.data.get("text")
+		code_input = request.POST.get('code_input')
+		#print(code_input)
+		f= open("practice_input.txt","w+")
+		f.write(code_input)
+		f.close()
 		context={}
 		
 		with open("q.cpp","w") as t:
 			t.write(code)
 		b=os.system("g++ q.cpp 2> error")
 		if(b==0):
-			os.system("a >aout.txt")
+			os.system("a < practice_input.txt >aout.txt")
 			with open("aout.txt","r+") as t:
 				str1 = t.read()
 				print(str1)
@@ -228,7 +233,9 @@ def problem_playground(request, contest_id, problem_id):
 		problem_obj = Problem.objects.get(pk=problem_id)
 		contest_obj = Contest.objects.get(pk=contest_id)
 		problem_file_url = problem_obj.testfile.url[1:]
+		input_file_url = problem_obj.inputfile.url[1:]
 		print("Problem File Url : ",problem_file_url)
+		print("Input File Url : ",input_file_url)
 		
 		context={}
 		typo = 'C++'
@@ -247,9 +254,10 @@ def problem_playground(request, contest_id, problem_id):
 			if(typo=='C++'):
 				with open("q.cpp","w") as t:
 					t.write(code)
-				b=os.system("g++ q.cpp 2> error")
+				b=os.system("g++  q.cpp 2> error")
 				if(b==0):
-					os.system("a >aout.txt")
+					argument = "a <" +input_file_url + " >aout.txt"
+					os.system(argument)
 					with open("aout.txt","r+") as t:
 						str1 = t.read()
 						if op == str1:
