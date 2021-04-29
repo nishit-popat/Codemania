@@ -1,4 +1,8 @@
-{% load static %}
+ {% comment %} This is practice.html template which includes code of practice plaground(facility to write and run the code ) {% endcomment %}
+ {% comment %} Author :  Meet Patel {% endcomment %}
+
+
+ {% load static %} {% comment %} static is loaded here {% endcomment %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,6 +21,8 @@
   </head>
 
   <body>
+
+      {% comment %} Code for navigation bar begins from here {% endcomment %}
       <nav
       class="navbar navbar-expand-lg navbar-dark"
       style="background-color: #0b0710; opacity: 0.96"
@@ -63,8 +69,17 @@
         </ul>
       </div>
     </nav>
+    {% comment %} Code for navigation bar ends here {% endcomment %}
+
+
+
+
+    {% comment %} Code for Practice Playground  {% endcomment %}
     <div class="container">
     <h1>Practice Your Program Here</h1>
+
+
+      {% comment %} form for code editor is provided  {% endcomment %}
       <form action="" method="post">
         {% csrf_token %} {{ form.as_p }}
         <div class="form-group">
@@ -72,10 +87,13 @@
           <textarea class="form-control" rows="4" name="code_input">
         {{ input | safe  }}
         </textarea>
+        {% comment %} TextArea to display the output {% endcomment %}
         <h5> Output </h5>
          <textarea class="form-control" rows="4">
         {{output | safe  }}
         </textarea>
+
+        {% comment %} Button to run  the code written in editor part {% endcomment %}
         <input type="submit" class="btn btn-success" style="margin-top:10px; margin-left: 73.5em; margin-bottom: 30px; width: 120px"
             value="Run"        
         />
@@ -86,40 +104,3 @@
     </div>
   </body>
 </html>
-
-
-{% comment %} {% extends 'base.html' %}
-{% load static %}
-{% block content %}
-
-<div class="container">
-    <h3 style="text-shadow: 2px 2px #f0f0f0; color: #fe1a64; margin-top: 1em"> PRACTICE YOUR CODE HERE </h3>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-
-            <textarea class="form-control" id="exampleFormControlPractice" rows="13" name="code">{{code}}</textarea>
-        </div>
-        <div class="form-group">
-            <h5> Output </h5>
-            <textarea class="form-control" id="exampleFormControlInputArguments" rows="4">{{output}}</textarea>
-        </div>
-        <div class="form-group row">
-            <div class="form-group col-md-2">
-                <select class="form-control" id="exampleFormControlSelect1" name="typo" style="margin-top: 10px;">
-                    <option value="{{typo}}" selected>{{typo}}</option>
-                    <option value="C">C</option>
-                    <option value="C++">C++</option>
-                    <option value="Java">Java</option>
-                </select>
-            </div>
-            <button type="Submit" class="btn btn-success" style="margin-left: 50em; width:fit-content;
-          margin-top: 10px; margin-left: 955px;">
-                <h6>Compile & Run</h6>
-            </button>
-        </div>
-</div>
-</form>
-</div>
-
-{% endblock %} {% endcomment %}

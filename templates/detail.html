@@ -1,9 +1,16 @@
+<!-- 
+    details.html is use to represent problem definitions and details of that definition under a perticuler contest.
+    Authors : Nishit Popat, Meet Patel, Manil Patel, Jay Patel
+ -->
+
 <h1>{{ problem_list }}</h1>
 {{contest_obj}}
 <ul>
-{% for problem in problem_list %}
+
+    <!-- for loop to retrieve data from database and showcase them -->
+    {% for problem in problem_list %}
     <li>{{ problem.problem_name }}</li>
     <li>{{ problem.problem_definition }}</li>
     <li>{{ problem.marks }}</li>
-{% endfor %}
+    {% endfor %}
 </ul>

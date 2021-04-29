@@ -1,174 +1,101 @@
+{% comment %} This is a signup.html file which includes the code of signup page. 
+              Authors: Manil Patel,Meet Patel,Jay Patel,Nishit Popat.
+{% endcomment %} 
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+{% comment %} This is the Header part of the signup.html file. {% endcomment %}
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="{% static 'css/leaderboard_css.css'%}" />
 
     <title>Sign up</title>
-  </head>
+</head>
 
-  <body
-    style="
-      background: url(/static/images/bg9.jpg);
-      height: 100vh;
-      -webkit-background-size: cover;
-      background-size: cover;
-      background-position: center center;
-      position: relative;
-      font-family: 'Poppins', sans-serif;
-    "
-  >
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-      crossorigin="anonymous"
-    ></script>
-
-    <nav
-      class="navbar navbar-expand-lg navbar-dark"
-      style="background-color: #0b0710; opacity: 0.96"
-    >
-      <div class="container-fluid l-auto">
-        <a class="navbar-brand my-auto" href="#">
-        <div class="row">
-        <div class="col-sm">
-          <img
-            src="{% static 'images/codemania_logo.png' %}"
-            alt="logo"
-            style="height: 50px; width: 60px"
-          />
-          </div>
-          <div class="col-sm">
-          <h2
-            style="
-              text-shadow: 1px 1px #fe1a64;
-              text-align: center;
-              padding-top: 4px;
-              color: #66fcf1;
-            "
-          >
-            CODEMANIA
-          </h2>
-          </div>
-          </div>
-        </a>
-      </div>
+{% comment %} This is the Body part of the signin.html file. {% endcomment %}
+<body style="background: url(/static/images/bg9.jpg);height: 100vh;-webkit-background-size: cover;background-size: cover;background-position: center center;position: relative;font-family: 'Poppins', sans-serif;">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    {% comment %} This is the Navigation bar of the signin.html file. {% endcomment %}
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0b0710; opacity: 0.96">
+        <div class="container-fluid l-auto">
+            <a class="navbar-brand my-auto" href="#">
+                <div class="row">
+                    <div class="col-sm">
+                        {% comment %} This will displays the logo of COdemania. {% endcomment %}
+                        <img src="{% static 'images/codemania_logo.png' %}" alt="logo" style="height: 50px; width: 60px" />
+                    </div>
+                    <div class="col-sm">
+                        {% comment %} This will displays the CODEMANIA text with H2 tag. {% endcomment %}
+                        <h2 style=" text-shadow: 1px 1px #fe1a64; text-align: center; padding-top: 4px; color: #66fcf1; ">
+                            CODEMANIA
+                        </h2>
+                    </div>
+                </div>
+            </a>
+        </div>
     </nav>
 
+    {% comment %} This loop will displays the message to the user from the django messages. {% endcomment %}
     {% for message in messages %}
-    <div
-      class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show"
-      role="alert"
-    >
-      <strong>Message: </strong> {{message}}
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
+    <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{message}}
+        {% comment %} We have used the bootstrap to display the messages to the user. {% endcomment %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endfor %}
-
-    <form
-      class="signup-form"
-      style="margin-left: 60%; margin-top: 4%"
-      action="/postregister/"
-      method="POST"
-    >
-      {% csrf_token %}
-      <p
-        class="h1 fw-normal my-3"
-        style="color: #fe1a64; text-shadow: 2px 2px #f4f4f4; font-size: 3em"
-      >
-        Register Yourself
-      </p>
-      <div class="row row-space">
-        <div class="col-2" style="width: 50%">
-          <div class="input-group">
-            <label for="inputFirstName" class="visually-hidden"
-              >First name</label
-            >
-            <input
-              class="form-control"
-              type="text"
-              name="first_name"
-              placeholder="First Name"
-              required=""
-              autofocus=""
-            />
-          </div>
+    {% comment %} This is a signup form which displays signin information and give the entered text to the login view using POST method. {% endcomment %}
+    <form class="signup-form" style="margin-left: 60%; margin-top: 4%" action="/postregister/" method="POST">
+        {% csrf_token %}
+        <p class="h1 fw-normal my-3" style="color: #fe1a64; text-shadow: 2px 2px #f4f4f4; font-size: 3em">
+            Register Yourself
+        </p>
+        <div class="row row-space">
+            <div class="col-2" style="width: 50%">
+                <div class="input-group">
+                    {% comment %} This displays the First Name label. {% endcomment %}
+                    <label for="inputFirstName" class="visually-hidden">First name</label>
+                    {% comment %} This is the input area for the First Name. {% endcomment %}
+                    <input class="form-control" type="text" name="first_name" placeholder="First Name" required="" autofocus="" />
+                </div>
+            </div>
+            <div class="col-2" style="width: 50%">
+                <div class="input-group">
+                    {% comment %} This displays the Last Name label. {% endcomment %}
+                    <label for="inputLastName" class="visually-hidden">last name</label>
+                    {% comment %} This is the input area for the Last Name. {% endcomment %}
+                    <input class="form-control" type="text" name="last_name" placeholder="Last Name" required="" autofocus="" />
+                </div>
+            </div>
         </div>
-        <div class="col-2" style="width: 50%">
-          <div class="input-group">
-            <label for="inputLastName" class="visually-hidden">last name</label>
-            <input
-              class="form-control"
-              type="text"
-              name="last_name"
-              placeholder="Last Name"
-              required=""
-              autofocus=""
-            />
-          </div>
-        </div>
-      </div>
-
-      <label for="inputEmail" class="visually-hidden">Email address</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        class="form-control my-4"
-        placeholder="Email address"
-        required=""
-        autofocus=""
-      />
-      <label for="inputUsername" class="visually-hidden">Username</label>
-
-      <input
-        type="text"
-        name="username"
-        id="username"
-        class="form-control my-4"
-        placeholder="Username"
-        required=""
-        autofocus=""
-      />
-      <label for="inputPassword" class="visually-hidden">Password</label>
-      <input
-        type="password"
-        name="password1"
-        id="inputPassword"
-        class="form-control mt-4 mb-4"
-        placeholder="Password"
-        required=""
-      />
-      <label for="inputPassword" class="visually-hidden">Password</label>
-      <input
-        type="password"
-        name="password2"
-        id="inputPassword"
-        class="form-control mt-4 mb-4"
-        placeholder="Confirm Password"
-        required=""
-      />
-      <button class="w-100 btn btn-lg signin-button mb-3" type="submit">
-        Sign in
-      </button>
+        {% comment %} This displays the Email address label. {% endcomment %}
+        <label for="inputEmail" class="visually-hidden">Email address</label>
+        {% comment %} This is the input area for the Email. {% endcomment %}
+        <input type="email" name="email" id="email" class="form-control my-4" placeholder="Email address" required="" autofocus="" />
+        {% comment %} This displays the Username label. {% endcomment %}
+        <label for="inputUsername" class="visually-hidden">Username</label>
+        {% comment %} This is the input area for the Username. {% endcomment %}
+        <input type="text" name="username" id="username" class="form-control my-4" placeholder="Username" required="" autofocus="" />
+        {% comment %} This displays the Password label. {% endcomment %}
+        <label for="inputPassword" class="visually-hidden">Password</label>
+        {% comment %} This is the input area for the Password. {% endcomment %}
+        <input type="password" name="password1" id="inputPassword" class="form-control mt-4 mb-4" placeholder="Password" required="" />
+        {% comment %} This displays the Confirm password label. {% endcomment %}
+        <label for="inputPassword" class="visually-hidden">Password</label>
+        {% comment %} This is the input area for the Confirm Password. {% endcomment %}
+        <input type="password" name="password2" id="inputPassword" class="form-control mt-4 mb-4" placeholder="Confirm Password" required="" />
+        {% comment %} This button will call the POST method of signup view to take neccessary backend actions. {% endcomment %}
+        <button class="w-100 btn btn-lg signin-button mb-3" type="submit">
+      Sign in
+    </button>
     </form>
-  </body>
+</body>
+
 </html>

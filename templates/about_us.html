@@ -1,9 +1,15 @@
-{% extends 'base.html' %}
-{% load static %}
+ {% extends 'base.html' %}  {% comment %} extending base template for  includingnavigation bar  {% endcomment %}
+ 
+ {% comment %} This is about_us.html template which includes code of information of the developers of this application  {% endcomment %}
+ {% comment %} Author :Meet Patel {% endcomment %}
+
+
+ {% load static %}            {% comment %} static directory is loaded here {% endcomment %}
 
 {% block content %}
 <br><br>
 
+	{% comment %} Code for Label for respective information  {% endcomment %}
 	<div class="modal fade" id="mymodal">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -40,7 +46,9 @@
 	<br><br>
 	<h1 class="text-center text-dark">About Us</h1><br><br>
 	<center>
+		
 		<div class="row">
+			{% comment %} information about nishit popat included here {% endcomment %}
 			<div class="col-md-3">
 				<div class="card mdb-color lighten-2 text-center z-depth-1" style="width:250px">
 					<img src="https://media-exp1.licdn.com/dms/image/C5603AQGBtAoe6MKXdA/profile-displayphoto-shrink_400_400/0/1616091501763?e=1621468800&v=beta&t=ltHdwWYmwMwTA1duKoz7SQq8wEiEP2gDUE0m6zfbiws" class="card-img-top" style="height:240px">
@@ -51,6 +59,7 @@
 					</div>
 				</div>
 			</div>
+			{% comment %} information about Meet Patel included here {% endcomment %}
 			<div class="col-md-3">
 				<div class="card mdb-color lighten-2 text-center z-depth-1" style="width:250px">
 					<img src="{% static 'images/Captain.PNG' %}" class="card-img-top" style="height:240px">
@@ -61,6 +70,7 @@
 					</div>
 				</div>
 			</div>
+			{% comment %} information about Manil Patel included here {% endcomment %}
 			<div class="col-md-3">
 				<div class="card mdb-color lighten-2 text-center z-depth-1" style="width:250px">
 					<img src="{% static 'images/Manil.PNG' %}"  class="card-img-top" style="height:240px">
@@ -71,6 +81,7 @@
 					</div>
 				</div>
 			</div>
+			{% comment %} information about Jay Patel included here {% endcomment %}
 			<div class="col-md-3">
 				<div class="card mdb-color lighten-2 text-center z-depth-1" style="width:250px">
 					<img src="{% static 'images/jay.jpg' %}" class="card-img-top" style="height:240px">

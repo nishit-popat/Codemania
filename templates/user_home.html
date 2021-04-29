@@ -1,167 +1,122 @@
+{% comment %} This is a user_home.html file which displays when user successfully logged into our system. 
+              Authors: Manil Patel,Meet Patel,Jay Patel,Nishit Popat.
+{% endcomment %} 
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
+{% comment %} This is the Header part of the user_home.html file. {% endcomment %}
+<head>
     <title>home</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-      crossorigin="anonymous"
-    />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <!-- CSS -->
     <style>
-      body {
-        background-image: url(static/images/bg11.png);
-        background-size: cover;
-      }
-
-      .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
-        width: 40%;
-        border-radius: 35px;
-        opacity: 90%;
-        margin: 20px;
-      }
-
-      .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-      }
-
-      img {
-        border-radius: 35px;
-      }
-
-      .container {
-        padding: 2px 16px;
-      }
-
-      .button1 {
-        background-color: #31fb83;
-        color: #0b0710;
-        border: 4px solid #31fb83;
-        height: 50px;
-        width: 200px;
-        border-radius: 20px;
-        opacity: 90%;
-        font-weight: bold;
-      }
-
-      .button1:hover {
-        background-color: white;
-        color: #31fb83;
-      }
+        body {
+            background-image: url(static/images/bg11.png);
+            background-size: cover;
+        }
+        
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 40%;
+            border-radius: 35px;
+            opacity: 90%;
+            margin: 20px;
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        img {
+            border-radius: 35px;
+        }
+        
+        .container {
+            padding: 2px 16px;
+        }
+        
+        .button1 {
+            background-color: #31fb83;
+            color: #0b0710;
+            border: 4px solid #31fb83;
+            height: 50px;
+            width: 200px;
+            border-radius: 20px;
+            opacity: 90%;
+            font-weight: bold;
+        }
+        
+        .button1:hover {
+            background-color: white;
+            color: #31fb83;
+        }
     </style>
-  </head>
-
-  <body>
-    <nav
-      class="navbar navbar-expand-lg navbar-dark"
-      style="background-color: #0b0710; opacity: 0.96"
-    >
-      <div class="container-fluid l-auto">
-        <a class="navbar-brand my-auto" href="#">
-          <div class="row">
-            <div class="col-sm">
-              <img
-                src="{% static 'images/codemania_logo.png' %}"
-                alt="logo"
-                style="height: 50px; width: 60px"
-              />
-            </div>
-            <div class="col-sm">
-              <h2
-                style="
-                  text-shadow: 1px 1px #fe1a64;
-                  text-align: center;
-                  padding-top: 4px;
-                  color: #66fcf1;
-                "
-              >
-                CODEMANIA
-              </h2>
-            </div>
-          </div>
-        </a>
-        <ul class="navbar-nav ml-auto" style="margin-right: 30px; color:white">
-          <li class="nav-item">
-            <a class="nav-link fs-5" href="{% url 'contest_list' %}">
-              Contest
+</head>
+{% comment %} This is the Body part of the user_home.html file. {% endcomment %}
+<body>
+    {% comment %} This is the Navigation bar of the user_home.html file. {% endcomment %}
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0b0710; opacity: 0.96">
+        <div class="container-fluid l-auto">
+            <a class="navbar-brand my-auto" href="#">
+                <div class="row">
+                    <div class="col-sm">
+                        {% comment %} This will displays the logo of COdemania. {% endcomment %}
+                        <img src="{% static 'images/codemania_logo.png' %}" alt="logo" style="height: 50px; width: 60px" />
+                    </div>
+                    <div class="col-sm">
+                        {% comment %} This will displays the CODEMANIA text with H2 tag. {% endcomment %}
+                        <h2 style="text-shadow: 1px 1px #fe1a64;text-align: center;padding-top: 4px;color: #66fcf1;">
+                            CODEMANIA
+                        </h2>
+                    </div>
+                </div>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fs-5" href="{% url 'plg' %}"> Practice </a>
-          </li>
-          <li class="nav-item fs-5">
-            <a class="nav-link" href="{% url 'aboutus' %}"> About Us </a>
-          </li>
-          <li class="nav-item fs-5">
-            <a class="nav-link" href="{% url 'lg' %}"> Sign Out </a>
-          </li>
-        </ul>
-      </div>
+            <ul class="navbar-nav ml-auto" style="margin-right: 30px; color:white">
+                <li class="nav-item">
+                    {% comment %} This anchor tag will redirect the user to contest page. {% endcomment %}
+                    <a class="nav-link fs-5" href="{% url 'contest_list' %}">Contest</a>
+                </li>
+                <li class="nav-item">
+                    {% comment %} This anchor tag will redirect the user to Practice page. {% endcomment %}
+                    <a class="nav-link fs-5" href="{% url 'plg' %}"> Practice </a>
+                </li>
+                <li class="nav-item fs-5">
+                    {% comment %} This anchor tag will redirect the user to About us page. {% endcomment %}
+                    <a class="nav-link" href="{% url 'aboutus' %}"> About Us </a>
+                </li>
+                <li class="nav-item fs-5">
+                    {% comment %} This anchor tag will redirect the user to Home page. {% endcomment %}
+                    <a class="nav-link" href="{% url 'lg' %}"> Sign Out </a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <div style="float: left; margin-left: 170px; margin-top: 40px">
-      <div class="card" style="height: 450px; width: 450px">
-        <img
-          src="{% static 'images/left-image.png' %}"
-          alt="Avatar"
-          style="width: 100%"
-        />
-        <div class="container"></div>
-      </div>
-      <button class="button button1" style="margin-left: 140px">
-        <a
-          href="{% url 'contest_list' %}"
-          style="text-decoration: none; color: #0b0710"
-          >CONTEST</a
-        >
-      </button>
+        <div class="card" style="height: 450px; width: 450px">
+            {% comment %} This tag displays the contest image. {% endcomment %}
+            <img src="{% static 'images/left-image.png' %}" alt="Avatar" style="width: 100%" />
+            <div class="container"></div>
+        </div>
+        <button class="button button1" style="margin-left: 140px">
+        {% comment %} This tag redirects user to contest page. {% endcomment %}
+      <a href="{% url 'contest_list' %}" style="text-decoration: none; color: #0b0710">CONTEST</a>
+    </button>
     </div>
 
     <div style="float: left; margin-left: 150px; margin-top: 40px">
-      <div class="card" style="height: 450px; width: 450px">
-        <img
-          src="{% static 'images/female-coding.jpg' %}"
-          alt="Avatar"
-          style="width: 100%"
-        />
-        <div class="container"></div>
-      </div>
-      <button class="button button1" style="margin-left: 150px">
-        <a href="{% url 'plg' %}" style="text-decoration: none; color: #0b0710"
-          >PRACTICE</a
-        >
-      </button>
+        <div class="card" style="height: 450px; width: 450px">
+          {% comment %} This tag displays the Practice image. {% endcomment %}
+            <img src="{% static 'images/female-coding.jpg' %}" alt="Avatar" style="width: 100%" />
+            <div class="container"></div>
+        </div>
+        <button class="button button1" style="margin-left: 150px">
+        {% comment %} This tag redirects user to Practice page. {% endcomment %}
+      <a href="{% url 'plg' %}" style="text-decoration: none; color: #0b0710">PRACTICE</a>
+    </button>
     </div>
-  </body>
+</body>
+
 </html>
-
-{% comment %}
-<nav
-  class="navbar navbar-expand-lg navbar-dark py-3"
-  style="background-color: #a451ff"
->
-  <div class="container-fluid l-auto">
-    <a class="navbar-brand my-auto" href="#">
-      <h3>CODEMANIA</h3>
-    </a>
-
-    <ul class="navbar-nav ml-auto" style="margin-right: 30px">
-      <li class="nav-item">
-        <a class="nav-link fs-5" href="{% url 'contest_list' %}"> Contest </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link fs-5" href="{% url 'plg' %}"> Practice </a>
-      </li>
-      <li class="nav-item fs-5">
-        <a class="nav-link" href="{% url 'aboutus' %}"> About Us </a>
-      </li>
-      <li class="nav-item fs-5">
-        <a class="nav-link" href="{% url 'lg' %}"> Sign Out </a>
-      </li>
-    </ul>
-  </div>
-</nav>
-{% endcomment %}
