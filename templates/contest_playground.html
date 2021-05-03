@@ -17,83 +17,91 @@
   </head>
 
   <body>
-    <nav
-      class="navbar navbar-expand-lg navbar-dark"
-      style="background-color: #0b0710; opacity: 0.96"
-    >
-      <div class="container-fluid l-auto">
-        <a class="navbar-brand my-auto" href="#">
-          <div class="row">
-            <div class="col-sm">
-              <img
-                src="{% static 'images/codemania_logo.png' %}"
-                alt="logo"
-                style="height: 50px; width: 60px"
-              /> 
+  {% if user.is_authenticated %}
+      <nav
+        class="navbar navbar-expand-lg navbar-dark"
+        style="background-color: #0b0710; opacity: 0.96"
+      >
+        <div class="container-fluid l-auto">
+          <a class="navbar-brand my-auto" href="#">
+            <div class="row">
+              <div class="col-sm">
+                <img
+                  src="{% static 'images/codemania_logo.png' %}"
+                  alt="logo"
+                  style="height: 50px; width: 60px"
+                /> 
+              </div>
+              <div class="col-sm">
+                <h2
+                  style="
+                    text-shadow: 1px 1px #fe1a64;
+                    text-align: center;
+                    padding-top: 4px;
+                    color: #66fcf1;
+                  "
+                >
+                  CODEMANIA
+                </h2>
+              </div>
             </div>
-            <div class="col-sm">
-              <h2
-                style="
-                  text-shadow: 1px 1px #fe1a64;
-                  text-align: center;
-                  padding-top: 4px;
-                  color: #66fcf1;
-                "
-              >
-                CODEMANIA
-              </h2>
-            </div>
-          </div>
-        </a>
-        <ul class="navbar-nav ml-auto" style="margin-right: 30px; color:white">
-          <li class="nav-item">
-            <a class="nav-link fs-5" href="{% url 'contest_list' %}">
-              Contest
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fs-5" href="{% url 'plg' %}"> Practice </a>
-          </li>
-          <li class="nav-item fs-5">
-            <a class="nav-link" href="{% url 'aboutus' %}"> About Us </a>
-          </li>
-          <li class="nav-item fs-5">
-            <a class="nav-link" href="{% url 'lg' %}"> Sign Out </a>
-          </li>
-        </ul>
+          </a>
+          <ul class="navbar-nav ml-auto" style="margin-right: 30px; color:white">
+            <li class="nav-item">
+              <a class="nav-link fs-5" href="{% url 'contest_list' %}">
+                Contest
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5" href="{% url 'plg' %}"> Practice </a>
+            </li>
+            <li class="nav-item fs-5">
+              <a class="nav-link" href="{% url 'aboutus' %}"> About Us </a>
+            </li>
+            <li class="nav-item fs-5">
+              <a class="nav-link" href="{% url 'logout' %}"> Sign Out </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+
+  <div class="container">
+      <br>
+
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+          <strong>Message: </strong> {{message}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-    </nav>
-    
+      {% endfor %}
 
-<div class="container">
-    <br>
-
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
-        <strong>Message: </strong> {{message}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
-
-    <div class="card">
-      <div class="card-body p-4" style=" box-sizing: border-box;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.07); background: #c5c6c7; opacity:0.9 ">
-       <h2>{{problem_obj.problem_name}}</h2>
-        <p>{{problem_obj.problem_definition | safe | linebreaks}} </p>
-    
+      <div class="card">
+        <div class="card-body p-4" style=" box-sizing: border-box;
+              box-shadow: 0 0 25px rgba(0, 0, 0, 0.07); background: #c5c6c7; opacity:0.9 ">
+        <h2>{{problem_obj.problem_name}}</h2>
+          <p>{{problem_obj.problem_definition | safe | linebreaks}} </p>
+      
+        </div>
       </div>
-    </div>
-    <h3 style="text-shadow: 2px 2px #f0f0f0; color: #fe1a64; margin-top: 1em"> TRY SOLUTION HERE </h3>
-        <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="form-group">
-          <h3>Output</h3>
-          <textarea class="form-control" rows="4">{{output}}</textarea>
-        <input type="submit" class="btn btn-success" style="margin-top:10px; margin-left: 73.5em; margin-bottom: 30px; width: 120px"
-            value="Run"        
-        />
+      <h3 style="text-shadow: 2px 2px #f0f0f0; color: #fe1a64; margin-top: 1em"> TRY SOLUTION HERE </h3>
+          <form action="" method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="form-group">
+            <h3>Output</h3>
+            <textarea class="form-control" rows="4">{{output}}</textarea>
+          <input type="submit" class="btn btn-success" style="margin-top:10px; margin-left: 73.5em; margin-bottom: 30px; width: 120px"
+              value="Run"        
+          />
 
-</div>
+  </div>
 
-</body>
+  </body>
+  {% else %}
+    
+        <body style="background:white">
+            <h2> Please Login to Access this Page. </h2>
+        </body>
+
+{% endif %}

@@ -5,52 +5,60 @@
 	Authors : Nishit Popat, Meet Patel, Manil Patel, Jay Patel
 -->
 
-<!-- Include base.html file for navigation bar -->
+  <!-- Include base.html file for navigation bar -->
 {% extends 'base.html' %} {% block content %}
+{% if user.is_authenticated %}
 
-<!-- This line provide basic style for body part -->
-<body style="background: url(/static/images/bg16.png)">
-  <h1 style="font-size: 44px; margin-left: 25px; color: #0b0710">Participate in Contests</h1>
+  <!-- This line provide basic style for body part -->
+  <body style="background: url(/static/images/bg16.png)">
+    <h1 style="font-size: 44px; margin-left: 25px; color: #0b0710">Participate in Contests</h1>
 
-  <!-- This div class is use for list out all contest and their details in card view  -->
-  <div class="myDiv">
+    <!-- This div class is use for list out all contest and their details in card view  -->
+    <div class="myDiv">
 
-    <!-- This line provide for loop to retrieve the contest data line by line -->
-    {% for c in contest_names %}
-    <div class="row" id="row">
-      <div class="col-sm-6">
-        <div class="card shadow bg-white rounded" style="
-            background-color: #485461;
-            background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
-            margin-left: 50%;
-            width: 700px;
-            margin-top:20px;
-          ">
-          <div class="card-body" style="color: white">
+      <!-- This line provide for loop to retrieve the contest data line by line -->
+      {% for c in contest_names %}
+      <div class="row" id="row">
+        <div class="col-sm-6">
+          <div class="card shadow bg-white rounded" style="
+              background-color: #485461;
+              background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+              margin-left: 50%;
+              width: 700px;
+              margin-top:20px;
+            ">
+            <div class="card-body" style="color: white">
 
-            <!-- This line retrieve contest name from database -->
-            <h5 class="card-title">{{ c.contest_name }}</h5>
+              <!-- This line retrieve contest name from database -->
+              <h5 class="card-title">{{ c.contest_name }}</h5>
 
-            <!-- This line retrieve contest-date from database -->
-            <p class="card-text">{{ c.contest_date }}</p>
+              <!-- This line retrieve contest-date from database -->
+              <p class="card-text">{{ c.contest_date }}</p>
 
-            <!-- This line provide button to go inside the contest -->
-            <a href="{{c.id}}/detail" class="btn btn-primary" id="btnAddControl">Participate Here</a>
+              <!-- This line provide button to go inside the contest -->
+              <a href="{{c.id}}/detail" class="btn btn-primary" id="btnAddControl">Participate Here</a>
 
-            <!-- This line provide button to show point table of the perticuler contest -->
-            <a href="leaderboard/{{c.id}}" class="btn btn-success" id="btnAddControl" style="margin-left: 375px">See
-              Leaderboard</a>
+              <!-- This line provide button to show point table of the perticuler contest -->
+              <a href="leaderboard/{{c.id}}" class="btn btn-success" id="btnAddControl" style="margin-left: 375px">See
+                Leaderboard</a>
 
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- This line ends the for loop -->
+      {% endfor %}
     </div>
 
-    <!-- This line ends the for loop -->
-    {% endfor %}
-  </div>
-
-  <!-- This line ends block -->
-  {% endblock %}
-
 </body>
+{% else %}
+    
+        <body style="background:white">
+            <h2> Please Login to Access this Page. </h2>
+        </body>
+
+{% endif %}
+
+ <!-- This line ends block -->
+    {% endblock %}

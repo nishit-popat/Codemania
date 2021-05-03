@@ -7,7 +7,7 @@
 '''
 #Importing required Libraries
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,Http404
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 import os
@@ -258,7 +258,7 @@ def detail(request, contest_id):
 		#Retrieve contest object from contest id
 		contest_obj=Contest.objects.get(pk=contest_id)
 
-	except Contest.DoesNotExist:
+	except Contest.DoesNotExist or Problem.DoesNotExist:
 
 		#If Contest does not exist then it will give error
 		raise Http404("Problems does not exist")

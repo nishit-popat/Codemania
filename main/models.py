@@ -48,10 +48,12 @@ class ProblemSolved(models.Model):
     def __str__(self):
         return self.user_ref.username + " solved " + self.problem_ref.problem_name + " and got " + str(self.points_get) + " marks " 
 
-
+#Snippet model stores code by the users
 class Snippet(models.Model):
+    #Text field which will have code
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    #ordering will be done whoever creates first
     class Meta:
         ordering = ('-created_at', )

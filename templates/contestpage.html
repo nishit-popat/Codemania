@@ -2,78 +2,89 @@
 {% comment %} This is a contestpage.html file which displays the ongoing contests to the user end. 
               Authors: Manil Patel,Meet Patel,Jay Patel,Nishit Popat.
 {% endcomment %} 
-{% load static %} 
-{% block content %}
+{% load static %}
 
-{% comment %} This is the Header part of the contestpage.html file. {% endcomment %}
-<head>
-    <!-- CSS -->
-    <style>
-        .question_box {
-            background: #31FB83;
-            text-align: left;
-            box-sizing: border-box;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.07);
-            border-radius: 20px;
-            padding: auto;
-            margin: 5px 0;
-            max-height: 3.5em;
-            max-width: 16em;
-            border: 5px solid rgba(0, 0, 0, 0.07);
-        }
-        
-        .question_box h6 {
-            margin-left: 10px;
-            ;
-            margin: 5px;
-            font-size: 20px;
-            color: white;
-        }
-        
-        .item {
-            background: #f4f4f4;
-            padding: 10px 10px;
-            box-sizing: border-box;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.07);
-            border-radius: 10px;
-            text-align: left;
-            margin-top: 10px;
-            border: 5px solid rgba(0, 0, 0, 0.07);
-        }
-        
-        .item:hover {
-            background: white;
-            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2);
-        }
-        
-        .item h6 {
-            margin-bottom: 20px;
-            font-size: 20px;
-            color: #2f2f2f;
-        }
-    </style>
-</head>
-{% comment %} This is the Body part of the contestpage.html file. {% endcomment %}
-<body>
-    <div class="container my-4">
-        <h2> {{ contest_obj }}</h2>
-    </div>
-    {% for problem in problem_list %}
-    <div class="container">
-        <div class="item">
-            {% comment %} This tag displays the Problem Marks to the user. {% endcomment %}
-            <p> Marks : {{ problem.marks }} </p>
-            {% comment %} This tag displays the Problem Name to the user. {% endcomment %}
-            <h4>{{ problem.problem_name }}</h4>
-            <div class="container question-details">
-                {% comment %} This tag displays the Problem definition to the user. {% endcomment %}
-                <p> {{ problem.problem_definition | safe | linebreaks }} </p>
-                {% comment %} This button open the new tab for compile and run for that problem. {% endcomment %}
-                <button type="button" class="btn btn-primary btn-block"><a href="{{problem.id}}/problem_playground" style="color: white;">Try This</a></button>
-            </div>
+{% if user.is_authenticated %}
+
+    {% block content %}
+
+    {% comment %} This is the Header part of the contestpage.html file. {% endcomment %}
+    <head>
+        <!-- CSS -->
+        <style>
+            .question_box {
+                background: #31FB83;
+                text-align: left;
+                box-sizing: border-box;
+                box-shadow: 0 0 25px rgba(0, 0, 0, 0.07);
+                border-radius: 20px;
+                padding: auto;
+                margin: 5px 0;
+                max-height: 3.5em;
+                max-width: 16em;
+                border: 5px solid rgba(0, 0, 0, 0.07);
+            }
+            
+            .question_box h6 {
+                margin-left: 10px;
+                ;
+                margin: 5px;
+                font-size: 20px;
+                color: white;
+            }
+            
+            .item {
+                background: #f4f4f4;
+                padding: 10px 10px;
+                box-sizing: border-box;
+                box-shadow: 0 0 25px rgba(0, 0, 0, 0.07);
+                border-radius: 10px;
+                text-align: left;
+                margin-top: 10px;
+                border: 5px solid rgba(0, 0, 0, 0.07);
+            }
+            
+            .item:hover {
+                background: white;
+                box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2);
+            }
+            
+            .item h6 {
+                margin-bottom: 20px;
+                font-size: 20px;
+                color: #2f2f2f;
+            }
+        </style>
+    </head>
+    {% comment %} This is the Body part of the contestpage.html file. {% endcomment %}
+    <body>
+        <div class="container my-4">
+            <h2> {{ contest_obj }}</h2>
         </div>
-        {% endfor %}
-</body>
-{% endblock %}
+        {% for problem in problem_list %}
+        <div class="container">
+            <div class="item">
+                {% comment %} This tag displays the Problem Marks to the user. {% endcomment %}
+                <p> Marks : {{ problem.marks }} </p>
+                {% comment %} This tag displays the Problem Name to the user. {% endcomment %}
+                <h4>{{ problem.problem_name }}</h4>
+                <div class="container question-details">
+                    {% comment %} This tag displays the Problem definition to the user. {% endcomment %}
+                    <p> {{ problem.problem_definition | safe | linebreaks }} </p>
+                    {% comment %} This button open the new tab for compile and run for that problem. {% endcomment %}
+                    <button type="button" class="btn btn-primary btn-block"><a href="{{problem.id}}/problem_playground" style="color: white;">Try This</a></button>
+                </div>
+            </div>
+            {% endfor %}
+        {% endblock %}
+    </body>
+{% else %}
+    
+        <body style="background:white">
+            <h2> Please Login to Access this Page. </h2>
+        </body>
 
-  
+{% endif %}
+
+
+    
