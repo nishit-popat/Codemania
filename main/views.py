@@ -133,8 +133,7 @@ def postregister(request):
 				
 				#Save user object
 				user.save()
-
-				print('You are registered successfully, Please sign to continue.')
+				messages.success(request, "You are registered sucessfully, Please sign in to continue")
 				return redirect('login')
 				
 		else:
@@ -197,6 +196,7 @@ def plg(request):
 
 				#store necessary variables in context dictionary
 				context['output'] = output_content
+				context['code_input'] = code_input
 				context['form'] = form
 				context['snippets'] = Snippet.objects.all
 
@@ -212,6 +212,7 @@ def plg(request):
 
 				#store all necessary variables as key pair in context dictionary
 				context['output']=error_content
+				context['code_input'] = code_input
 				context['form'] = form
 				context['snippets'] = Snippet.objects.all()
 

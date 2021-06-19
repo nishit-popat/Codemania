@@ -76,6 +76,11 @@
                 </a>
                 <ul class="navbar-nav ml-auto" style="margin-right: 30px; color:white">
                     <li class="nav-item">
+                        <a class="nav-link fs-5" href="{% url 'contest_list' %}">
+                            {{user.get_username}}
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         {% comment %} This anchor tag will redirect the user to contest page. {% endcomment %}
                         <a class="nav-link fs-5" href="{% url 'contest_list' %}">Contest</a>
                     </li>
@@ -94,10 +99,10 @@
                 </ul>
             </div>
         </nav>
-
+        <div class="conainer mt-3 mx-4" style="color: white"> <h2> Hello, {{user.get_username}} </h2> </div>
     
 
-        <div style="float: left; margin-left: 170px; margin-top: 40px">
+        <div style="float: left; margin-left: 170px; margin-top: 10px">
             <div class="card" style="height: 450px; width: 450px">
                 {% comment %} This tag displays the contest image. {% endcomment %}
                 <img src="{% static 'images/left-image.png' %}" alt="Avatar" style="width: 100%" />
@@ -109,7 +114,7 @@
         </button>
         </div>
 
-        <div style="float: left; margin-left: 150px; margin-top: 40px">
+        <div style="float: left; margin-left: 150px; margin-top: 10px">
             <div class="card" style="height: 450px; width: 450px">
             {% comment %} This tag displays the Practice image. {% endcomment %}
                 <img src="{% static 'images/female-coding.jpg' %}" alt="Avatar" style="width: 100%" />

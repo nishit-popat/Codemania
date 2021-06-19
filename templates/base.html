@@ -57,6 +57,12 @@
         </a>
         <ul class="navbar-nav ml-auto" style="margin-right: 30px; color:white">
 
+        <li class="nav-item">
+            <a class="nav-link fs-5" href="{% url 'contest_list' %}">
+              {{user.get_username}}
+            </a>
+          </li>
+
           {% comment %} Link to go to the Contest Tab in nav-bar {% endcomment %}
           <li class="nav-item">
             <a class="nav-link fs-5" href="{% url 'contest_list' %}">

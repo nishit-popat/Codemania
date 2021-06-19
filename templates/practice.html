@@ -56,6 +56,11 @@
           <ul class="navbar-nav ml-auto" style="margin-right: 30px; color:white">
             <li class="nav-item">
               <a class="nav-link fs-5" href="{% url 'contest_list' %}">
+                {{user.get_username}}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5" href="{% url 'contest_list' %}">
                 Contest
               </a>
             </li>
@@ -86,13 +91,11 @@
           {% csrf_token %} {{ form.as_p }}
           <div class="form-group">
             <h5>Input</h5>
-            <textarea class="form-control" rows="4" name="code_input">
-          {{ input | safe  }}
-          </textarea>
+            <textarea class="form-control" rows="4" name="code_input">{{code_input}}</textarea>
           {% comment %} TextArea to display the output {% endcomment %}
           <h5> Output </h5>
           <textarea class="form-control" rows="4">
-          {{output | safe  }}
+          {{output}}
           </textarea>
 
           {% comment %} Button to run  the code written in editor part {% endcomment %}
